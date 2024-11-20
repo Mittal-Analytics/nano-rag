@@ -1,0 +1,12 @@
+pymupdf
+pdftotext
+pyyaml
+openai
+chonkie[semantic]
+
+ipython
+ipdb
+pytest
+
+# install using
+# uv pip install -r requirements.txt
