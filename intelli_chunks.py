@@ -3,13 +3,18 @@ import pymupdf
 import pathlib
 from chonkie import SDPMChunker
 
-from utils import get_formatted_paragraphs_pymupdf, trim_headers_footers
+from utils import (
+    get_formatted_paragraphs_pymupdf,
+    remove_non_english_paras,
+    trim_headers_footers,
+)
 
 
 def get_intelli_pages(filepath):
     print("parsing pdf using pymupdf")
     doc = pymupdf.open(filepath)
-    pages = [get_formatted_paragraphs_pymupdf(page) for page in doc]
+    pages = (get_formatted_paragraphs_pymupdf(page) for page in doc)
+    pages = remove_non_english_paras(pages)
     print("trimming headers footers")
     trim_headers_footers(pages)
     return pages
@@ -26,6 +31,7 @@ def get_chunks(text):
     print("preparing chunker")
     chunker = LineSemanticChunker(
         embedding_model="all-minilm-l6-v2",
+        # embedding_model=Model2VecEmbeddings("minishlab/potion-base-8M"),
         max_chunk_size=8000,
         similarity_threshold=0.5,
         initial_sentences=1,
