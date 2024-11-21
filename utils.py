@@ -81,8 +81,14 @@ def get_paragraphs_pymupdf(page: pymupdf.Page):
     return paragraphs
 
 
-def non_english_pages(pages):
-    pass
+def remove_non_english_pages(pages):
+    def ascii_ratio(text):
+        if not text.strip():
+            return 1
+        ascii_chars = sum(1 for char in text if ord(char) < 128)
+        return ascii_chars / len(text)
+
+    return [[para for para in page if ascii_ratio(para) >= 0.5] for page in pages]
 
 
 def trim_headers_footers(pages):

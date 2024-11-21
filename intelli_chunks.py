@@ -3,11 +3,7 @@ import pymupdf
 import pathlib
 from chonkie import SDPMChunker
 
-from utils import (
-    get_formatted_paragraphs_pymupdf,
-    get_paragraphs_pymupdf,
-    trim_headers_footers,
-)
+from utils import get_formatted_paragraphs_pymupdf, trim_headers_footers
 
 
 def get_intelli_pages(filepath):
@@ -31,9 +27,9 @@ def get_chunks(text):
     chunker = LineSemanticChunker(
         embedding_model="all-minilm-l6-v2",
         max_chunk_size=8000,
-        similarity_threshold=0.3,
+        similarity_threshold=0.5,
         initial_sentences=1,
-        skip_window=1,
+        skip_window=2,
     )
     print("grouping chunks by similarity")
     chunks = chunker.chunk(text)

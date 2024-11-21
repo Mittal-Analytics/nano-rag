@@ -1,3 +1,55 @@
+**GLOBAL ECONOMY**
+
+The global economy underwent a modest recovery to grow 
+at an estimated 3.2%, in CY 2023. This can be attributed 
+to a robust increase in consumer demand, accumulation 
+of savings during pandemic restrictions, and abundant job 
+opportunities in labour markets. However, there were also 
+challenges such as geopolitical tensions and ongoing supply 
+chain disruptions. The decision by central banks around the 
+world to raise interest rates to combat inflation also posed 
+challenges to economic growth.
+
+Advanced economies such as the United States (US) 
+experienced a more modest growth rate of 2.5% in CY 2023. 
+This can be attributed to strong consumer spending and a 
+robust job market. However, the Eurozone faced a tougher 
+climb with growth recorded at 0.4% in CY 2023. High energy
+
+prices and a less confident consumer base were significant 
+factors influencing this slower growth. In contrast, emerging 
+and developing economies fared better, collectively 
+experiencing a more rapid expansion at 4.3% in CY 2023. 
+This growth was strengthened by China's reopening of the 
+economy after stringent pandemic restrictions and India's 
+robust domestic demand.
+
+However, despite overall growth, inflation remained a 
+significant global concern. While headline inflation figures 
+began to cool towards the end of the year, they remained 
+above central bank targets in most countries. Consequently, 
+major central banks such as the Federal Reserve and the 
+European Central Bank maintained a hawkish stance, 
+repeatedly raising interest rates and tightening financial 
+conditions in response.
+
+**OUTLOOK**
+
+In CY 2024 and 2025, the global economy is walking 
+on a tightrope, having shown resilience by avoiding 
+pessimistic recession projections and maintaining stable 
+growth. Growth is projected at a modest 3.2% for both 
+years, despite challenges from stricter monetary policies, 
+reduced government spending, and slow productivity gains. 
+Inflation is expected to cool to 5.9% in CY 2024 and 4.5% in  
+CY 2025, but policymakers must carefully manage its decline 
+to avoid hindering growth. Faster disinflation and China's 
+recovery offer promising opportunities, while geopolitical 
+tensions and persistent inflation pose downside risks. Long-
+term growth, especially in emerging markets, relies heavily 
+on structural reforms aimed at boosting productivity and 
+ensuring sustainable debt levels.
+
 **INDIAN ECONOMY**
 
 India has been witnessing robust economic growth due to 
@@ -17,27 +69,3 @@ Source:
 [https://www.moneycontrol.com/news/business/
 economy/moodys-raises-indias-2024-gdp-growth-
 estimate-to-6-8-from-6-1-12396911.html,
-
-**4.3%**
-
-**4.2%**
-
-**4.2%**
-
-**1.6%**
-
-**1.7%**
-
-**1.8%**
-
-**3.2%**
-
-**3.2%**
-
-**3.2%**
-
-World Output
-Advanced 
-Economies
-Emerging Markets and 
-Developing Economies
