@@ -1,6 +1,7 @@
 import sys
 import pymupdf
 import pathlib
+from chonkie.embeddings import Model2VecEmbeddings
 from chonkie import SDPMChunker
 
 from utils import (
@@ -30,9 +31,9 @@ def get_chunks(text):
     # https://huggingface.co/models?library=sentence-transformers
     print("preparing chunker")
     chunker = LineSemanticChunker(
-        embedding_model="all-minilm-l6-v2",
+        embedding_model="sentence-transformers/all-MiniLM-L6-v2",
         # embedding_model=Model2VecEmbeddings("minishlab/potion-base-8M"),
-        max_chunk_size=8000,
+        chunk_size=8000,
         similarity_threshold=0.5,
         initial_sentences=1,
         skip_window=2,

@@ -2,7 +2,7 @@ pymupdf
 pdftotext
 pyyaml
 openai
-chonkie[semantic]
+chonkie[all]
 
 ipython
 ipdb
