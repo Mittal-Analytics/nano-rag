@@ -26,7 +26,6 @@ get_chunks = lru_cache(get_intelli_chunks)
 )
 def test_chunks(text, snapshot):
     chunks = get_chunks("test_files/ngl.pdf")
-    assert len(chunks) > 500
-
     output = find_chunk(chunks, text)
     compare_snapshot(output, snapshot)
+    assert len(chunks) > 500
