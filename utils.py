@@ -84,22 +84,48 @@ def get_block_paragraphs_pymupdf(page: pymupdf.Page):
 
 
 def _is_mixed_case(w):
+    # strip any prefixes which are not alphanumeric
+    while w and (not w[0].isalnum()):
+        w = w[1:]
     return any(c.isupper() for c in w[1:]) and not w.isupper()
 
 
-def remove_non_english_paras(pages):
-    def is_gibberish(para):
-        if not para.strip():
-            return False
+def _is_non_ascii(w):
+    # do `ord()` to see ord value
+    # do `chr()` to see char at particuar ord value
+    return any(
+        ((oc := ord(c)) >= 128) and not (8216 <= oc <= 8223) and (oc not in [8211])
+        for c in w
+    )
 
-        words = para.split()
-        # words are bad if they have non-ascii char or if they are mixed case
-        bad_words = sum(1 for w in words if _is_mixed_case(w) or not w.isascii())
-        if bad_words / len(words) > 0.1:
-            return True
+
+def _is_gibberish(para):
+    if not para.strip():
         return False
 
-    pages = ([para for para in page if not is_gibberish(para)] for page in pages)
+    words = para.split()
+    bad_words = sum(1 for w in words if _is_mixed_case(w) or _is_non_ascii(w))
+    if bad_words > 4 and (bad_words / len(words) > 0.1):
+        return True
+    return False
+
+
+def debug_gibberish(para):
+    """
+    from utils import debug_gibberish
+    """
+    # handle paste from terminal
+    lines = para.splitlines()
+    if all(line.startswith("-") for line in lines):
+        para = "\n".join(line.removeprefix("-") for line in lines)
+
+    words = para.split()
+    bad_words = [w for w in words if _is_mixed_case(w) or _is_non_ascii(w)]
+    print("bad words:", bad_words)
+
+
+def remove_non_english_paras(pages):
+    pages = ([para for para in page if not _is_gibberish(para)] for page in pages)
     return [page for page in pages if page]
 
 
