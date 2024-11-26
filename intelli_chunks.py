@@ -15,7 +15,7 @@ from utils import (
 def get_intelli_pages(filepath):
     print("parsing pdf using pymupdf")
     doc = pymupdf.open(filepath)
-    pages = (get_formatted_paragraphs_pymupdf(page) for page in doc)
+    pages = [get_formatted_paragraphs_pymupdf(page) for page in doc]
     pages = remove_non_english_paras(pages)
     print("trimming headers footers")
     trim_headers_footers(pages)

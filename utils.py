@@ -125,8 +125,14 @@ def debug_gibberish(para):
 
 
 def remove_non_english_paras(pages):
-    pages = ([para for para in page if not _is_gibberish(para)] for page in pages)
-    return [page for page in pages if page]
+    before = "----".join("\n\n".join(paras) for paras in pages)
+    r_pages = ([para for para in page if not _is_gibberish(para)] for page in pages)
+    r_pages = [page for page in r_pages if page]
+    after = "----".join("\n\n".join(paras) for paras in r_pages)
+
+    # remove non-english only if non-english content is too much
+    pages = r_pages if len(after) < 0.9 * len(before) else pages
+    return pages
 
 
 @lru_cache
