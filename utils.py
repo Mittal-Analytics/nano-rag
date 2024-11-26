@@ -83,14 +83,23 @@ def get_block_paragraphs_pymupdf(page: pymupdf.Page):
     return paragraphs
 
 
-def remove_non_english_paras(pages):
-    def ascii_ratio(text):
-        if not text.strip():
-            return 1
-        ascii_chars = sum(1 for char in text if ord(char) < 128)
-        return ascii_chars / len(text)
+def _is_mixed_case(w):
+    return any(c.isupper() for c in w[1:]) and not w.isupper()
 
-    pages = ([para for para in page if ascii_ratio(para) >= 0.5] for page in pages)
+
+def remove_non_english_paras(pages):
+    def is_gibberish(para):
+        if not para.strip():
+            return False
+
+        words = para.split()
+        # words are bad if they have non-ascii char or if they are mixed case
+        bad_words = sum(1 for w in words if _is_mixed_case(w) or not w.isascii())
+        if bad_words / len(words) > 0.1:
+            return True
+        return False
+
+    pages = ([para for para in page if not is_gibberish(para)] for page in pages)
     return [page for page in pages if page]
 
 
