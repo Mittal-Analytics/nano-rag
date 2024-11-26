@@ -90,7 +90,7 @@ def get_args():
     if args.output is None:
         # Get the filename from input path and change extension to .txt
         input_filename = pathlib.Path(args.filepath).stem
-        args.output = str(pathlib.Path("output") / f"{input_filename}.txt")
+        args.output = str(pathlib.Path("outputs") / f"{input_filename}.txt")
         # Ensure output directory exists
         pathlib.Path("output").mkdir(exist_ok=True)
     return args
