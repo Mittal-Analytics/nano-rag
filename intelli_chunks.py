@@ -1,6 +1,7 @@
 import sys
 import pymupdf
 import pathlib
+import argparse
 from chonkie.embeddings import SentenceTransformerEmbeddings, Model2VecEmbeddings
 from chonkie import SDPMChunker
 
@@ -70,10 +71,34 @@ def get_intelli_chunks(filepath, output=None):
     return chunks
 
 
+def get_args():
+    parser = argparse.ArgumentParser(
+        description="Process PDF file and create intelligent chunks"
+    )
+    parser.add_argument(
+        "filepath", help="Path to the input PDF file", default="samples/ngl.pdf"
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="Path to output text file",
+        default=None,
+    )
+
+    args = parser.parse_args()
+
+    if args.output is None:
+        # Get the filename from input path and change extension to .txt
+        input_filename = pathlib.Path(args.filepath).stem
+        args.output = str(pathlib.Path("output") / f"{input_filename}.txt")
+        # Ensure output directory exists
+        pathlib.Path("output").mkdir(exist_ok=True)
+    return args
+
+
 def main():
-    FILEPATH = "samples/ngl.pdf"
-    OUTPUT = "outputs/ngl-intelli.md"
-    chunks = get_intelli_chunks(FILEPATH, output=OUTPUT)
+    args = get_args()
+    chunks = get_intelli_chunks(args.filepath, output=args.output)
     find_chunk(chunks, "What operational", is_print=True)
     find_chunk(chunks, "Acquired Macrotech", is_print=True)
     find_chunk(chunks, "Management Discussion", is_print=True)
